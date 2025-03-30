@@ -1,0 +1,11 @@
+{
+  "name": "module-federation-demo",
+  "private": "true",
+  "version": "1.0.0",
+  "scripts": {
+    "preinstall": "pnpm install --ignore-scripts",
+    "start": "pnpm run --filter module-federation-demo_** --parallel dev",
+    "build": "pnpm run --filter module-federation-demo_* build",
+    "preview": "pnpm run --filter module-federation-demo_* --parallel preview"
+  }
+}

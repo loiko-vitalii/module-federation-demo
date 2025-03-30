@@ -1,0 +1,12 @@
+.feed {
+  padding: 32px;
+  display: grid;
+  gap: 32px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  align-content: start;
+  position: relative;
+}
+
+.feedUpdating {
+  background-color: rgba(0, 0, 0, 0.1);
+}

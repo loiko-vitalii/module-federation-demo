@@ -1,0 +1,23 @@
+.typography {
+  margin: 0;
+}
+
+.multilineTruncate {
+  --lines: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: var(--lines);
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.colorBlack {
+  color: #353535;
+}
+
+.colorGrey {
+  color: #85859a;
+}
+
+.colorBlue {
+  color: #789fff;
+}

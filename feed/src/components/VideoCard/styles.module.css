@@ -1,0 +1,37 @@
+.videoCard {
+  display: grid;
+  align-content: start;
+  align-items: start;
+  gap: 8px;
+}
+
+.videoCardThumbnail {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.videoCardFooter {
+  display: grid;
+  grid-template-areas: "author author" "views publishedAt";
+  gap: 4px;
+}
+
+.videoAuthor {
+  grid-area: author;
+}
+
+.videoViews {
+  grid-area: views;
+  justify-self: start;
+}
+
+.videoPublishedAt {
+  grid-area: publishedAt;
+  justify-self: end;
+}
+
+.videoLink {
+  text-decoration: none;
+}

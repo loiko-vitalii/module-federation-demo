@@ -1,0 +1,16 @@
+.input {
+  outline: none;
+  border-width: 1px;
+  font-size: 1rem;
+  border-color: #789fff;
+  border-radius: 8px;
+  padding: 12px 24px;
+  color: #353535;
+  transition: border-color 0.5s ease;
+  &:hover {
+    border-color: #5284ff;
+  }
+  &:focus {
+    outline: 1px solid #5284ff;
+  }
+}
