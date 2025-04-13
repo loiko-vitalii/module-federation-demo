@@ -31,7 +31,7 @@ export type ListVideo = {
   };
 };
 
-export type ApiVideoResponse<T> = { items: T[] };
+export type ApiVideoResponse<T> = { items: T[]; nextPageToken: string };
 
 export type ApiSearchVideoResponse = ApiVideoResponse<SearchVideo>;
 

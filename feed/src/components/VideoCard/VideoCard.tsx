@@ -3,7 +3,7 @@ import { clsx } from 'clsx';
 import { Typography } from 'uikit/components';
 import type { StyleOverrides } from 'uikit/types';
 
-import type { Video } from '../../types';
+import type { Types } from '../../types.ts';
 import {
   videoAuthor,
   videoCard,
@@ -14,7 +14,7 @@ import {
   videoViews,
 } from './styles.module.css';
 
-export interface Props extends Omit<Video, 'id'>, StyleOverrides {}
+export interface Props extends Omit<Types, 'id'>, StyleOverrides {}
 
 export const VideoCard = ({ title, thumbnail, author, views, publishedAt, url, className }: Props) => (
   <a href={url} className={clsx(videoLink, className)} target="_blank" rel="noreferrer">
