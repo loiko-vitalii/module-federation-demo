@@ -20,8 +20,7 @@ export const Search = ({ className }: Props) => {
     const search: string | null = formData.get('search') as string;
 
     setSearchParams(search ? { search: search.trim().toLowerCase() } : {});
-
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    window.dispatchEvent(new CustomEvent('search', { detail: { search } }));
   };
 
   return (

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Feed } from './components/Feed';
+
+import { Feed } from './Feed';
 import './global.module.css';
 
 const rootEl = document.getElementById('root');

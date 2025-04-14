@@ -6,7 +6,7 @@ export default createModuleFederationConfig({
     uikit: 'uikit@http://localhost:3004/mf-manifest.json',
   },
   exposes: {
-    '.': './src/components/AppBar',
+    '.': './src/AppBar',
   },
   shared: {
     react: { singleton: true },

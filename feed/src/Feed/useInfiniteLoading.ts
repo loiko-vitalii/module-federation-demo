@@ -1,5 +1,7 @@
 import { type MutableRefObject, useEffect, useRef } from 'react';
 
+const INTERSECTION_OBSERVER_OPTIONS: IntersectionObserverInit = { rootMargin: '50px' };
+
 type HookResult = {
   loaderRef: MutableRefObject<HTMLDivElement | null>;
 };
@@ -23,14 +25,11 @@ export const useInfiniteLoading = ({ hasMore, loadMore }: Props): HookResult => 
       return;
     }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          loadMore();
-        }
-      },
-      { rootMargin: '50px' },
-    );
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        loadMore();
+      }
+    }, INTERSECTION_OBSERVER_OPTIONS);
 
     observer.observe(loaderNode);
 

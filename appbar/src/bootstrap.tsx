@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import { AppBar } from './components/AppBar';
+
+import { AppBar } from './AppBar';
+import './global.module.css';
 
 const rootEl = document.getElementById('root');
 
