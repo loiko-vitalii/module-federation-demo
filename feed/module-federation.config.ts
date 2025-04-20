@@ -3,7 +3,7 @@ import { createModuleFederationConfig } from '@module-federation/rsbuild-plugin'
 export default createModuleFederationConfig({
   name: 'feed',
   remotes: {
-    uikit: 'uikit@http://localhost:3004/mf-manifest.json',
+    uikit: `uikit@${process.env.PRODUCTION_DOMAIN}/uikit/latest/mf-manifest.json`,
   },
   exposes: {
     '.': './src/Feed',

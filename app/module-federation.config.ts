@@ -3,9 +3,9 @@ import { createModuleFederationConfig } from '@module-federation/rsbuild-plugin'
 export default createModuleFederationConfig({
   name: 'app',
   remotes: {
-    appbar: 'appbar@http://localhost:3001/mf-manifest.json',
-    feed: 'feed@http://localhost:3003/mf-manifest.json',
-    uikit: 'uikit@http://localhost:3004/mf-manifest.json',
+    appbar: `appbar@${process.env.PRODUCTION_DOMAIN}/appbar/latest/mf-manifest.json`,
+    feed: `feed@${process.env.PRODUCTION_DOMAIN}/feed/latest/mf-manifest.json`,
+    uikit: `uikit@${process.env.PRODUCTION_DOMAIN}/uikit/latest/mf-manifest.json`,
   },
   shareStrategy: 'loaded-first',
   shared: {
