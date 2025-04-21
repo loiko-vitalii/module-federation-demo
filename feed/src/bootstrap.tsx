@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 
 import { Feed } from './Feed';
 
@@ -13,7 +14,9 @@ if (rootEl) {
 
   root.render(
     <React.StrictMode>
-      <Feed />
+      <BrowserRouter>
+        <Feed />
+      </BrowserRouter>
     </React.StrictMode>,
   );
 }

@@ -1,9 +1,11 @@
 import { createModuleFederationConfig } from '@module-federation/rsbuild-plugin';
 
+const IS_PROD = process.env.NODE_ENV === 'production';
+
 export default createModuleFederationConfig({
   name: 'appbar',
   remotes: {
-    uikit: `uikit@${process.env.PRODUCTION_DOMAIN}/uikit/latest/mf-manifest.json`,
+    uikit: `uikit@${IS_PROD ? `${process.env.PRODUCTION_DOMAIN}/uikit/latest` : 'http://localhost:3003'}/mf-manifest.json`,
   },
   exposes: {
     '.': './src/AppBar',

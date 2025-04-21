@@ -15,4 +15,7 @@ export default defineConfig({
     },
     assetPrefix: `${DOMAIN}/app/${VERSION}`,
   },
+  html: {
+    title: 'LightTube',
+  },
 });
