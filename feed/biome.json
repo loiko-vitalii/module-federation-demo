@@ -5,6 +5,12 @@
 		"clientKind": "git",
 		"useIgnoreFile": false
 	},
+	"json": {
+		"parser": {
+			"allowComments": true,
+			"allowTrailingCommas": true
+		}
+	},
 	"files": {
 		"ignoreUnknown": false,
 		"ignore": []
