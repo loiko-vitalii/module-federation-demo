@@ -7,10 +7,6 @@ jobs:
   e2e-tests:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        shard: [ '1/4', '2/4', '3/4', '4/4' ]
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -33,6 +29,5 @@ jobs:
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps
 
-      - name: Run Playwright tests (shard ${{ matrix.shard }})
-        run: pnpm exec playwright test \
-          --shard=${{ matrix.shard }}
+      - name: Run Playwright tests
+        run: pnpm exec playwright test
