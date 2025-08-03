@@ -35,6 +35,21 @@ export const useSearchVideos = ({ search }: Props): HookResult => {
     try {
       setIsLoading(true);
 
+      if (!search.trim()) {
+        const { items, nextPageToken } = await fetchVideos<ApiVideoListResponse>('videos', {
+          part: 'snippet,statistics',
+          chart: 'mostPopular',
+          maxResults: PAGINATION_LIMIT,
+          ...(pageToken ? { pageToken } : {}),
+        });
+
+        return {
+          search: '',
+          data: prepareData(items),
+          pageToken: nextPageToken,
+        };
+      }
+
       const { items, nextPageToken } = await fetchVideos<ApiSearchVideoResponse>(
         'search',
         {
