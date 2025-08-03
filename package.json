@@ -6,6 +6,13 @@
     "preinstall": "pnpm install --ignore-scripts",
     "start": "pnpm run --filter module-federation-demo_** --parallel dev",
     "build": "pnpm run --filter module-federation-demo_* build",
-    "preview": "pnpm run --filter module-federation-demo_* --parallel preview"
+    "preview": "pnpm run --filter module-federation-demo_* --parallel preview",
+    "e2e-tests": "pnpm playwright test",
+    "e2e-tests-ui": "pnpm playwright test --ui",
+    "e2e-codegen": "pnpm playwright codegen http://localhost:3000"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.54.2",
+    "@types/node": "^22.14.1"
   }
 }
