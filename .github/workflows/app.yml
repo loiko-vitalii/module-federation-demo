@@ -14,7 +14,12 @@ defaults:
     working-directory: app
 
 jobs:
+  tests:
+    uses: ./.github/workflows/playwright.yml
+
   build:
+    needs: tests
+
     runs-on: ubuntu-latest
 
     env:
