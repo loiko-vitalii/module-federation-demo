@@ -9,4 +9,10 @@ test.describe('Home Page', () => {
   test('should display correct page title', async ({ page }) => {
     await expect(page).toHaveTitle('LightTube');
   });
+
+  test('should have LightTube logo that links to home', async ({ page }) => {
+    const logo = page.getByRole('link', { name: 'LightTube' });
+    await expect(logo).toBeVisible();
+    await expect(logo).toHaveAttribute('href', '/');
+  });
 });
