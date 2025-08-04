@@ -12,7 +12,7 @@ test.describe('Home Page', () => {
 
   test('should have LightTube logo that links to home', async ({ page }) => {
     const logo = page.getByRole('link', { name: 'LightTube' });
-    await expect(logo).toBeVisible({ timeout: 10000});
+    await expect(logo).toBeVisible();
     await expect(logo).toHaveAttribute('href', '/');
   });
 });
