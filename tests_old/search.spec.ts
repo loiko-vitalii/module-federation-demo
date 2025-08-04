@@ -1,4 +1,4 @@
-// tests/search.spec.ts
+// tests_old/search.spec.ts
 import { test, expect } from '@playwright/test';
 
 test.describe('Search Functionality', () => {

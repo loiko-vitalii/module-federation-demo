@@ -1,4 +1,4 @@
-// tests/video-interactions.spec.ts
+// tests_old/video-interactions.spec.ts
 import { test, expect } from '@playwright/test';
 
 test.describe('Video Interactions', () => {
