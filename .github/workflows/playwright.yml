@@ -29,5 +29,20 @@ jobs:
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps
 
+      - name: Start all microfrontends (background)
+        run: pnpm run start &> server.log &
+
+      - name: Wait for shell port
+        run: npx wait-on http://localhost:3000 --timeout 60000 --verbose
+
+      - name: Check server log
+        if: failure()
+        run: |
+          echo "==== server.log ===="
+          cat server.log
+
+      - name: List running processes
+        run: ps aux
+
       - name: Run Playwright tests
         run: pnpm exec playwright test
