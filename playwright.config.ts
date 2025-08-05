@@ -13,10 +13,6 @@ import * as process from "node:process";
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  timeout: 60_000,
-  expect:{
-    timeout: 60_000,
-  },
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -82,6 +78,5 @@ export default defineConfig({
     command: 'pnpm run start',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
-    timeout: 120_1000,
   },
 });

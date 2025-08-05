@@ -5,7 +5,6 @@ on:
 
 jobs:
   e2e-tests:
-    timeout-minutes: 60
     runs-on: ubuntu-latest
 
     steps:
@@ -28,7 +27,7 @@ jobs:
         run: pnpm install
 
       - name: Install Playwright Browsers
-        run: pnpm dlx playwright install --with-deps
+        run: pnpm exec playwright install --with-deps
 
       - name: Run Playwright tests
-        run: pnpm run e2e-tests
+        run: pnpm exec playwright test
