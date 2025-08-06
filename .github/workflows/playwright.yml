@@ -29,11 +29,5 @@ jobs:
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps
 
-      - name: Wait for all microfrontends
-        run: |
-          echo "Waiting for localhost:3000…"
-          npx wait-on http://localhost:3000
-          curl -I http://localhost:3000
-
       - name: Run Playwright tests
         run: pnpm exec playwright test
