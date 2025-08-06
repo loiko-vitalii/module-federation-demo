@@ -26,6 +26,13 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
+    headless:true,
+    launchOptions: {
+      args: [
+        '--disable-web-security',
+        '--disable-site-isolation-trials',
+      ],
+    },
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: 'http://localhost:3000',
 
@@ -77,8 +84,7 @@ export default defineConfig({
   webServer: {
     command: 'pnpm run start',
     url: 'http://localhost:3000',
-    // reuseExistingServer: !process.env.CI,
-    reuseExistingServer: true,
+    reuseExistingServer: !process.env.CI,
     timeout: 120_000,
   },
 });
