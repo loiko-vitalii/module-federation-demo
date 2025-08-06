@@ -11,6 +11,7 @@ export default defineConfig({
   plugins: [pluginReact(), pluginTypedCSSModules(), pluginModuleFederation(moduleFederationConfig)],
   server: {
     port: 3001,
+    cors: true,
   },
   output: {
     cssModules: {

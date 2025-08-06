@@ -26,13 +26,6 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    headless:true,
-    launchOptions: {
-      args: [
-        '--disable-web-security',
-        '--disable-site-isolation-trials',
-      ],
-    },
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: 'http://localhost:3000',
 
