@@ -18,7 +18,4 @@ export default defineConfig({
   html: {
     title: 'LightTube',
   },
-  server: {
-    cors: true,
-  },
 });
