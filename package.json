@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "preinstall": "pnpm install --ignore-scripts",
-    "start": "pnpm run --filter module-federation-demo_* --parallel dev",
+    "start": "pnpm -r --parallel dev",
     "build": "pnpm run --filter module-federation-demo_* build",
     "preview": "pnpm run --filter module-federation-demo_* --parallel preview",
     "e2e-tests": "playwright test",
