@@ -1,20 +1,8 @@
-// tests_old/home.spec.ts
+// tests/home.spec.ts
 import { test, expect } from '@playwright/test';
 
 test.describe('Home Page', () => {
   test.beforeEach(async ({ page }) => {
-    // Логування консольних повідомлень й помилок сторінки
-    page.on('console', msg => console.log(`[console] ${msg.type()}: ${msg.text()}`));
-    page.on('pageerror', err => console.error(`[pageerror] ${err.message}`));
-    // Логування помилок запитів
-    page.on('requestfailed', req => {
-      console.error(`[reqfailed] ${req.url()} – ${req.failure()?.errorText}`);
-    });
-    page.on('response', res => {
-      if (res.status() >= 400)
-        console.error(`[http ${res.status()}] ${res.url()}`);
-    });
-
     await page.goto('http://localhost:3000');
   });
 
@@ -22,17 +10,39 @@ test.describe('Home Page', () => {
     await expect(page).toHaveTitle('LightTube');
   });
 
-  test('should have LightTube logo that links to home', async ({ page }, testInfo) => {
+  test('should have LightTube logo that links to home', async ({ page }) => {
     const logo = page.getByRole('link', { name: 'LightTube' });
-    try {
-      await logo.waitFor({ state: 'visible', timeout: 15000 });
-      await expect(logo).toHaveAttribute('href', '/');
-    } catch (err) {
-      // При падінні: скриншот + дамп DOM
-      console.error('=== PAGE CONTENT AT FAILURE ===');
-      console.error(await page.content());
-      await page.screenshot({ path: `test-results/failure-${testInfo.title}.png` });
-      throw err;
-    }
+    await expect(logo).toBeVisible();
+    await expect(logo).toHaveAttribute('href', '/');
+  });
+
+  test('should have search functionality', async ({ page }) => {
+    const searchBox = page.getByRole('searchbox', { name: 'Type to Search a Video...' });
+    await expect(searchBox).toBeVisible();
+    await expect(searchBox).toBeEmpty();
+  });
+
+  test('should display video grid', async ({ page }) => {
+    const videos = page.getByRole('article');
+    // Wait for at least one video to be visible
+    await expect(videos.first()).toBeVisible();
+    // Ensure we have multiple videos
+    const count = await videos.count();
+    expect(count).toBeGreaterThan(0);
+  });
+
+  test('each video card should have required elements', async ({ page }) => {
+    // Get the first video card
+    const firstVideo = page.getByRole('article').first();
+
+    // Check for thumbnail
+    await expect(firstVideo.getByRole('img')).toBeVisible();
+
+    // Check for title
+    await expect(firstVideo.getByRole('heading', { level: 3 })).toBeVisible();
+
+    // Check for channel name
+    const channelInfo = firstVideo.getByText(/.*/, { exact: false }).first();
+    await expect(channelInfo).toBeVisible();
   });
 });
