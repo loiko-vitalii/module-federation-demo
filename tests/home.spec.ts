@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Home Page', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:3000');
+    await page.goto('http://localhost:3000', { waitUntil: 'networkidle' });
   });
 
   test('should display correct page title', async ({ page }) => {
