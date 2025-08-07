@@ -7,10 +7,8 @@ jobs:
   e2e-tests:
     runs-on: ubuntu-latest
 
-
-
     env:
-      PUBLIC_YOUTUBE_DATA_API_KEY: ${{ secrets.PUBLIC_YOUTUBE_DATA_API_KEY }}
+      PUBLIC_YOUTUBE_DATA_API_KEY: AIzaSyDw31Ql90ovWPLhzoRCRPfVtrASlEG__gU
 
     steps:
       - name: Debug API Key (безпечно)
