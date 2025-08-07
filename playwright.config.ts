@@ -1,13 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 import * as process from "node:process";
 
-
-console.log('🎭 PLAYWRIGHT CONFIG DEBUG:');
-console.log('🌍 NODE_ENV from process.env:', process.env.NODE_ENV);
-console.log('🤖 CI from process.env:', process.env.CI);
-console.log('📁 CWD:', process.cwd());
-
-
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
