@@ -1,6 +1,6 @@
 import { createModuleFederationConfig } from '@module-federation/rsbuild-plugin';
 
-const IS_PROD = process.env.NODE_ENV === 'production';
+const IS_PROD = process.env.NODE_ENV === 'production' && !process.env.CI;
 
 export default createModuleFederationConfig({
   name: 'appbar',

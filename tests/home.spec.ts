@@ -23,14 +23,6 @@ test.describe('Home Page', () => {
   });
 
   test('should display video grid', async ({ page }) => {
-      try {
-          const uikitResponse = await page.request.get('http://localhost:3003');
-          console.log('🎨 UIKit server status:', uikitResponse.status());
-      } catch (error) {
-          console.log('⚠️  UIKit server not available:', error);
-      }
-
-
     const videos = page.getByRole('article');
     // Wait for at least one video to be visible
     await expect(videos.first()).toBeVisible();
