@@ -7,7 +7,6 @@ jobs:
   e2e-tests:
     runs-on: ubuntu-latest
     env:
-      NODE_ENV: development
       PUBLIC_YOUTUBE_DATA_API_KEY: ${{ secrets.PUBLIC_YOUTUBE_DATA_API_KEY }}
 
     steps:
