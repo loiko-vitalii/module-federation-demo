@@ -15,6 +15,7 @@ defaults:
 jobs:
   tests:
     uses: ./.github/workflows/playwright.yml
+    secrets: inherit
 
   build:
     needs: tests

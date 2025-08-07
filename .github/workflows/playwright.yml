@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      PUBLIC_YOUTUBE_DATA_API_KEY: AIzaSyDw31Ql90ovWPLhzoRCRPfVtrASlEG__gU
+      PUBLIC_YOUTUBE_DATA_API_KEY: ${{ secrets.PUBLIC_YOUTUBE_DATA_API_KEY }}
 
     steps:
       - name: Debug API Key (безпечно)
