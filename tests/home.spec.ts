@@ -89,24 +89,28 @@ test.describe('Home Page', () => {
   });
 
   test('should display video grid', async ({ page }) => {
-      // Перевірити, що є взагалі на сторінці
-      const allElements = await page.locator('*').count();
-      console.log('🔢 Total elements on page:', allElements);
+      // Перевірити змінні оточення в браузері
+      const apiKey = await page.evaluate(() => {
+          return (window as any).import?.meta?.env?.PUBLIC_YOUTUBE_DATA_API_KEY || 'undefined';
+      });
+      console.log('🔑 API Key in browser:', apiKey ? 'SET' : 'NOT SET');
 
-      const images = await page.locator('img').count();
-      console.log('🖼️ Total images:', images);
+      // Перевірити, чи робляться запити до YouTube API
+      page.on('request', request => {
+          if (request.url().includes('googleapis.com') || request.url().includes('youtube')) {
+              console.log(`🎥 YouTube API request: ${request.url()}`);
+          }
+      });
 
-      const articles = await page.locator('article').count();
-      console.log('📰 Total articles:', articles);
+      page.on('requestfailed', request => {
+          if (request.url().includes('googleapis.com') || request.url().includes('youtube')) {
+              console.log(`❌ YouTube API failed: ${request.url()}`);
+              console.log(`❌ Reason:`, request.failure()?.errorText);
+          }
+      });
 
-      if (articles === 0) {
-          console.log('❌ No articles found, taking screenshot...');
-          await page.screenshot({ path: 'debug-no-articles.png', fullPage: true });
-
-          // Подивимося на HTML структуру
-          const bodyHTML = await page.locator('body').innerHTML();
-          console.log('🏗️ Body HTML preview:', bodyHTML.slice(0, 1000));
-      }
+      await page.goto('http://localhost:3000');
+      await page.waitForTimeout(3000);
 
 
 
