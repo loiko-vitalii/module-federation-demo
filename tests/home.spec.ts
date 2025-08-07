@@ -89,7 +89,29 @@ test.describe('Home Page', () => {
   });
 
   test('should display video grid', async ({ page }) => {
-    const videos = page.getByRole('article');
+      // Перевірити, що є взагалі на сторінці
+      const allElements = await page.locator('*').count();
+      console.log('🔢 Total elements on page:', allElements);
+
+      const images = await page.locator('img').count();
+      console.log('🖼️ Total images:', images);
+
+      const articles = await page.locator('article').count();
+      console.log('📰 Total articles:', articles);
+
+      if (articles === 0) {
+          console.log('❌ No articles found, taking screenshot...');
+          await page.screenshot({ path: 'debug-no-articles.png', fullPage: true });
+
+          // Подивимося на HTML структуру
+          const bodyHTML = await page.locator('body').innerHTML();
+          console.log('🏗️ Body HTML preview:', bodyHTML.slice(0, 1000));
+      }
+
+
+
+
+      const videos = page.getByRole('article');
     // Wait for at least one video to be visible
     await expect(videos.first()).toBeVisible();
     // Ensure we have multiple videos
@@ -111,26 +133,4 @@ test.describe('Home Page', () => {
     const channelInfo = firstVideo.getByText(/.*/, { exact: false }).first();
     await expect(channelInfo).toBeVisible();
   });
-
-test('video thumbnails should load properly', async ({ page }) => {
-  // Перевірити, що є взагалі на сторінці
-  const allElements = await page.locator('*').count();
-  console.log('🔢 Total elements on page:', allElements);
-  
-  const images = await page.locator('img').count();
-  console.log('🖼️ Total images:', images);
-  
-  const articles = await page.locator('article').count();
-  console.log('📰 Total articles:', articles);
-  
-  if (articles === 0) {
-    console.log('❌ No articles found, taking screenshot...');
-    await page.screenshot({ path: 'debug-no-articles.png', fullPage: true });
-    
-    // Подивимося на HTML структуру
-    const bodyHTML = await page.locator('body').innerHTML();
-    console.log('🏗️ Body HTML preview:', bodyHTML.slice(0, 1000));
-  }
-  
-  // Ваш існуючий код тесту...
 });
