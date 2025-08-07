@@ -6,10 +6,25 @@ on:
 jobs:
   e2e-tests:
     runs-on: ubuntu-latest
+
+
+
     env:
       PUBLIC_YOUTUBE_DATA_API_KEY: ${{ secrets.PUBLIC_YOUTUBE_DATA_API_KEY }}
 
     steps:
+      - name: Debug API Key (безпечно)
+        run: |
+          echo "API Key exists: ${{ secrets.PUBLIC_YOUTUBE_DATA_API_KEY != '' }}"
+          echo "API Key length: ${#PUBLIC_YOUTUBE_DATA_API_KEY}"
+          if [ -n "$PUBLIC_YOUTUBE_DATA_API_KEY" ]; then
+            echo "API Key first 5 chars: ${PUBLIC_YOUTUBE_DATA_API_KEY:0:5}..."
+            echo "API Key last 3 chars: ...${PUBLIC_YOUTUBE_DATA_API_KEY: -3}"
+            echo "API Key contains 'AIza': $(echo $PUBLIC_YOUTUBE_DATA_API_KEY | grep -q 'AIza' && echo 'YES' || echo 'NO')"
+          else
+            echo "❌ API Key is empty!"
+          fi
+
       - name: Checkout code
         uses: actions/checkout@v4
 
