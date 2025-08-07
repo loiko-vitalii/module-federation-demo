@@ -90,10 +90,7 @@ test.describe('Home Page', () => {
 
   test('should display video grid', async ({ page }) => {
       // Перевірити змінні оточення в браузері
-      const apiKey = await page.evaluate(() => {
-          return (window as any).import?.meta?.env?.PUBLIC_YOUTUBE_DATA_API_KEY || 'undefined';
-      });
-      console.log('🔑 API Key in browser:', apiKey ? 'SET' : 'NOT SET');
+      console.log('🔑 API Key in browser:', (window as any).import?.meta?.env?.PUBLIC_YOUTUBE_DATA_API_KEY);
 
       // Перевірити, чи робляться запити до YouTube API
       page.on('request', request => {
