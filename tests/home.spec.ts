@@ -3,6 +3,32 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Home Page', () => {
   test.beforeEach(async ({ page }) => {
+    console.log('🔍 Starting test, checking servers...');
+    
+    // Перевіряємо основний сервер
+    try {
+      const mainResponse = await page.request.get('http://localhost:3000');
+      console.log('✅ Main server (3000) status:', mainResponse.status());
+    } catch (error) {
+      console.log('❌ Main server (3000) error:', error.message);
+    }
+    
+    // Перевіряємо uikit сервер
+    try {
+      const uikitResponse = await page.request.get('http://localhost:3003');
+      console.log('✅ UIKit server (3003) status:', uikitResponse.status());
+    } catch (error) {
+      console.log('❌ UIKit server (3003) error:', error.message);
+    }
+    
+    // Перевіряємо mf-manifest.json
+    try {
+      const manifestResponse = await page.request.get('http://localhost:3003/mf-manifest.json');
+      console.log('✅ UIKit manifest status:', manifestResponse.status());
+    } catch (error) {
+      console.log('❌ UIKit manifest error:', error.message);
+    }
+    
     await page.goto('http://localhost:3000');
   });
 
