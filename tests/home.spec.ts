@@ -23,25 +23,7 @@ test.describe('Home Page', () => {
   });
 
   test('should display video grid', async ({ page }) => {
-      // Перевірити, чи робляться запити до YouTube API
-      page.on('request', request => {
-          if (request.url().includes('googleapis.com') || request.url().includes('youtube')) {
-              console.log(`🎥 YouTube API request: ${request.url()}`);
-          }
-      });
-
-      page.on('requestfailed', request => {
-          if (request.url().includes('googleapis.com') || request.url().includes('youtube')) {
-              console.log(`❌ YouTube API failed: ${request.url()}`);
-              console.log(`❌ Reason:`, request.failure()?.errorText);
-          }
-      });
-
-      await page.goto('http://localhost:3000');
-      await page.waitForTimeout(3000);
-
-
-      const videos = page.getByRole('article');
+    const videos = page.getByRole('article');
     // Wait for at least one video to be visible
     await expect(videos.first()).toBeVisible();
     // Ensure we have multiple videos
