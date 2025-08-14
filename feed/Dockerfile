@@ -1,6 +1,11 @@
 # Base stage with dependencies
 FROM node:22-alpine as base
 
+ARG PRODUCTION_DOMAIN
+ARG PUBLIC_YOUTUBE_DATA_API_KEY
+ENV PRODUCTION_DOMAIN=$PRODUCTION_DOMAIN
+ENV PUBLIC_YOUTUBE_DATA_API_KEY=$PUBLIC_YOUTUBE_DATA_API_KEY
+
 WORKDIR /app
 
 # Copy workspace configuration files from ROOT directory

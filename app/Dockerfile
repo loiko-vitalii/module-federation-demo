@@ -1,6 +1,9 @@
 # Base stage with dependencies
 FROM node:22-alpine as base
 
+ARG PRODUCTION_DOMAIN
+ENV PRODUCTION_DOMAIN=$PRODUCTION_DOMAIN
+
 WORKDIR /app
 
 # Copy workspace configuration files from ROOT directory
