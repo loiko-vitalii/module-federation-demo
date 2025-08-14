@@ -45,7 +45,7 @@ jobs:
 
       - name: Deploy to AWS S3
         run: |
-          VERSION=$(docker run --rm uikit-build node -p "require('./package.json').version")
+          VERSION=$(docker run --rm app-build node -p "require('./package.json').version")
           aws s3 sync dist s3://${{ secrets.AWS_BUCKET_NAME }}/app/${VERSION} --delete
           aws s3 sync dist s3://${{ secrets.AWS_BUCKET_NAME }}/app/latest --delete
 
