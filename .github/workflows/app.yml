@@ -8,11 +8,6 @@ on:
       - 'app/**'
   workflow_dispatch:
 
-
-defaults:
-  run:
-    working-directory: app
-
 jobs:
   tests:
     uses: ./.github/workflows/playwright.yml
@@ -23,30 +18,23 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    env:
-      PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-          
-      - name: Setup nodejs
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'pnpm'
-          cache-dependency-path: 'pnpm-lock.yaml'
-          
-      - name: Install dependencies
-        run: pnpm install
-        
-      - name: Build
-        run: pnpm build
+      - name: Build with Docker
+        run: |
+          docker build \
+            --target builder \
+            --build-arg PRODUCTION_DOMAIN=${{ secrets.PRODUCTION_DOMAIN }} \
+            -f app/Dockerfile \
+            -t app-build .
+
+      - name: Extract build artifacts
+        run: |
+          docker create --name temp-container app-build
+          docker cp temp-container:/app/app/dist ./dist
+          docker rm temp-container
         
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -57,7 +45,7 @@ jobs:
 
       - name: Deploy to AWS S3
         run: |
-          VERSION=$(node -p "require('./package.json').version")
+          VERSION=$(docker run --rm uikit-build node -p "require('./package.json').version")
           aws s3 sync dist s3://${{ secrets.AWS_BUCKET_NAME }}/app/${VERSION} --delete
           aws s3 sync dist s3://${{ secrets.AWS_BUCKET_NAME }}/app/latest --delete
 

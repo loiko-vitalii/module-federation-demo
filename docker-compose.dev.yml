@@ -1,0 +1,67 @@
+services:
+  app-dev:
+    build:
+      context: .
+      dockerfile: app/Dockerfile
+      target: development
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./app:/app/app
+      - app-node-modules:/app/app/node_modules
+    environment:
+      - NODE_ENV=development
+    networks:
+      - dev-network
+  appbar-dev:
+    build:
+      context: .
+      dockerfile: appbar/Dockerfile
+      target: development
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./appbar:/app/appbar
+      - appbar-node-modules:/app/appbar/node_modules
+    environment:
+      - NODE_ENV=development
+    networks:
+      - dev-network
+  feed-dev:
+    build:
+      context: .
+      dockerfile: feed/Dockerfile
+      target: development
+    ports:
+      - "3002:3002"
+    volumes:
+      - ./feed:/app/feed
+      - feed-node-modules:/app/feed/node_modules
+    environment:
+      - NODE_ENV=development
+    networks:
+      - dev-network
+  uikit-dev:
+    build:
+      context: .
+      dockerfile: uikit/Dockerfile
+      target: development
+    ports:
+      - "3003:3003"
+    volumes:
+      - ./uikit:/app/uikit
+      - uikit-node-modules:/app/uikit/node_modules
+    environment:
+      - NODE_ENV=development
+    networks:
+      - dev-network
+
+networks:
+  dev-network:
+    name: dev-network
+
+volumes:
+  app-node-modules:
+  appbar-node-modules:
+  feed-node-modules:
+  uikit-node-modules:

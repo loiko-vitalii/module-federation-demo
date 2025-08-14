@@ -14,7 +14,7 @@ if (rootEl) {
       <Logo />
       <Typography variant="h1">UIKit</Typography>
       <Input />
-      <Link href="#">Link Test</Link>
+      <Link href="#">Link</Link>
     </React.StrictMode>,
   );
 }
