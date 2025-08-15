@@ -11,5 +11,13 @@ export const AppBar = ({ className }: Props) => (
   <header className={clsx(appbar, className)}>
     <Logo className={logo} />
     <Search className={search} />
+    <button
+      type="button"
+      onClick={() => {
+        throw new Error('AppBar Error');
+      }}
+    >
+      AppBar Error Button
+    </button>
   </header>
 );
