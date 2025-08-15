@@ -16,6 +16,9 @@ export default defineConfig({
     cssModules: {
       namedExport: true,
     },
+    sourceMap: {
+      js: 'source-map',
+    },
     assetPrefix: `${DOMAIN}/uikit/${VERSION}`,
   },
 });
