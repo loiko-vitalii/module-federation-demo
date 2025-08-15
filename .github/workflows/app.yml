@@ -26,7 +26,8 @@ jobs:
         run: |
           docker build \
             --target builder \
-            --build-arg PRODUCTION_DOMAIN=${{ secrets.PRODUCTION_DOMAIN }} \
+            --build-arg PRODUCTION_DOMAIN=${{ secrets.PRODUCTION_DOMAIN }} \в
+            --build-arg SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }} \в
             -f app/Dockerfile \
             -t app-build .
 

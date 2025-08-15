@@ -22,7 +22,6 @@ if (rootEl) {
   root.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App />
         <button
           type="button"
           onClick={() => {
@@ -31,6 +30,7 @@ if (rootEl) {
         >
           Error Button
         </button>
+        <App />
       </BrowserRouter>
     </React.StrictMode>,
   );
