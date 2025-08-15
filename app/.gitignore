@@ -3,3 +3,6 @@
 /dist/
 @mf-types/
 .env
+
+# Sentry Config File
+.sentryclirc
