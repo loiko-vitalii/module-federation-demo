@@ -25,10 +25,10 @@ if (rootEl) {
         <button
           type="button"
           onClick={() => {
-            throw new Error('Error');
+            throw new Error('App Error');
           }}
         >
-          Error Button
+          App Error Button
         </button>
         <App />
       </BrowserRouter>

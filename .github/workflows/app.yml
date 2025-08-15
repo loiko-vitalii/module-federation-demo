@@ -27,7 +27,6 @@ jobs:
           docker build \
             --target builder \
             --build-arg PRODUCTION_DOMAIN=${{ secrets.PRODUCTION_DOMAIN }} \
-            --build-arg SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }} \
             -f app/Dockerfile \
             -t app-build .
 
