@@ -13,6 +13,9 @@ export default defineConfig({
     cssModules: {
       namedExport: true,
     },
+    sourceMap: {
+      js: 'source-map',
+    },
     assetPrefix: `${DOMAIN}/app/${VERSION}`,
   },
   html: {
